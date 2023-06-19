@@ -61,7 +61,7 @@
 
 								<br>
 								<div class="container text-center">
-									<button type="submit" class="btn primary-background">Submit</button>
+									<button type="submit" class="btn primary-background nav-item-color">Submit</button>
 								</div>
 
 							</form>
