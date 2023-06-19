@@ -15,24 +15,23 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/mystyle.css" type="text/css" />
 </head>
-<body>
+<body class="primary-background">
 
 	<%@include file="navbar.jsp"%>
 
-	<main
-		class="d-flex align-items-center primary-background  padding-bottam : 50px">
+	<main  class="d-flex align-items-center primary-background  padding-bottam : 50px">
 
 		<div class="container ">
 
 			<div class="col-md-5  offset-md-3">
 
-				<div class="card ">
+				<div class="card mt-5 mb-5">
 					<div
-						class="class-header  primary-background text-white text-center">
+						class="class-header  primary-background text-white text-center pt-3 pb-3">
 						<span class="fa fa-3x fa-user-circle"></span> <br> Register
 						here
 					</div>
-					<div class="class-body p-3">
+					<div class="class-body py-3 px-5">
 						<form action="RegisterServlet" method="POST" id="reg_form">
 							<div class="form-group">
 								<label for="exampleInputEmail1">User Name</label> <input
@@ -67,7 +66,7 @@
 							</div>
 
 							<div class="from-group">
-								<textarea name="about" class="for m-control" rows="3" cols="40"
+								<textarea name="about" class="for m-control p-2" rows="3" cols="40"
 									placeholder="Enter somthing about your self"></textarea>
 							</div>
 
@@ -83,9 +82,11 @@
 								<span class="fa fa-refresh fa-spin fa-2x"></span>
 								<h4>please wait...</h4>
 							</div>
-							<button type="submit" class="btn primary-background">Submit</button>
+							<button type="submit" class="btn primary-background nav-item-color">Submit</button>
 						</form>
 
+					</div>
+			</div>
 
 					</div>
 				</div>
