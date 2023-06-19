@@ -21,7 +21,7 @@
 
 	<div class="container-fluid p-0 m-0">
 
-		<div  class="jumbotron primary-background text-white">
+		<div  style="border-radius:0;" class="jumbotron primary-background text-white">
 			<div class="container">
 				<h3 class="display-3">Welcome to TechBlog</h3>
 
