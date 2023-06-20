@@ -1,29 +1,35 @@
-
+<%@page import="com.tech.blog.entities.User"%>
 <%@page import="com.tech.blog.dao.LikeDao"%>
 <%@page import="com.tech.blog.entities.Post"%>
 <%@page import="java.util.List"%>
 <%@page import="com.tech.blog.helper.ConnectionProvider"%>
 <%@page import="com.tech.blog.dao.PostDao"%>
-<%@page import="com.tech.blog.entities.User"%>
+
+<%@page errorPage="error.jsp"%>
+
+<%
+User user = (User) session.getAttribute("CurrentUser");
+if (user == null) {
+	response.sendRedirect("login_page.jsp");
+}
+%>
+
 
 <div class="row">
 
-
     <%
         
-        User uuu=(User)session.getAttribute("currentUser");
+    
         
         Thread.sleep(1000);
         PostDao d = new PostDao(ConnectionProvider.getConnection());
         
         int cid = Integer.parseInt(request.getParameter("cid"));
-
-    	
         List<Post> posts = null;
         if (cid == 0) {
             posts = d.getAllList();
         } else {
-            posts = d.getPostBycatID(cid );
+            posts = d.getPostBycatID(cid);
         }
         
         if (posts.size() == 0) {
@@ -44,15 +50,12 @@
             </div>
             <div class="card-footer primary-background text-center">
                 <% 
-                	LikeDao ld = new LikeDao(ConnectionProvider.getConnection());
+                    LikeDao ld = new LikeDao(ConnectionProvider.getConnection());
                 %>
+                <a href="#!" onclick="doLike(<%= p.getPid()%>,<%= user.getId() %>)" class="btn btn-outline-light btn-sm"> <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>
 
-
-                <a href="#!" onclick="doLike(<%= p.getPid()%>,<%= uuu.getId()%>)" class="btn btn-outline-light btn-sm"> 
-                <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>
                 <a href="show_blog_page.jsp?post_id=<%= p.getPid()%>" class="btn btn-outline-light btn-sm">Read More...</a>
-                <a href="#!" class="btn btn-outline-light btn-sm"> 
-                <i class="fa fa-commenting-o"></i> <span>20</span>  </a>
+                <a href="#!" class="btn btn-outline-light btn-sm"> <i class="fa fa-commenting-o"></i> <span>20</span>  </a>
             </div>
 
         </div>

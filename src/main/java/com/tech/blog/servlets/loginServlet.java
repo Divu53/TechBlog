@@ -45,6 +45,7 @@ public class loginServlet extends HttpServlet {
 			
 		}else {
 			HttpSession h =request.getSession();
+			h.setMaxInactiveInterval(0);
 			h.setAttribute("CurrentUser", u);
 			response.sendRedirect("profile.jsp");
 			
