@@ -48,6 +48,8 @@ public class PostDao {
 		try {
 			
 			String q = "insert into posts(pTitle,pContent,pCode,pPic,catID,userID) values(? ,? ,?, ?, ?, ?)";
+			
+			
 			PreparedStatement pstmt = con.prepareStatement(q);
 			pstmt.setString(1,p.getpTitle());
 			pstmt.setString(2, p.getpContent());
@@ -73,14 +75,15 @@ public class PostDao {
 	public List<Post> getAllList() {
 		
 		List<Post>  list = new ArrayList<>();
-		
 		try {
 			PreparedStatement p = con.prepareStatement("select * from posts order by pid desc");
 			ResultSet set=p.executeQuery();
 			
+			
 			while(set.next()) {
 				
 				int pid = set.getInt("pid");
+				
 				String pTitle = set.getNString("pTitle");
 				String pContent = set.getString("pContent");
 				String pCode = set.getString("pCode");
@@ -96,7 +99,6 @@ public class PostDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 		return list;
 	}

@@ -7,12 +7,12 @@ public class LikeDao {
     Connection con;
 
     public LikeDao(Connection con) {
-    	System.out.println("con" + con);
         this.con = con;
     }
 
     public boolean insertLike(int pid, int uid) {
         boolean f = false;
+        System.out.println("called insertLike");
         try {
             String q = "insert into liked(pid,uid)values(?,?)";
             PreparedStatement p = this.con.prepareStatement(q);
@@ -32,6 +32,7 @@ public class LikeDao {
     public int countLikeOnPost(int pid) {
         int count = 0;
 
+        System.out.println("called countLikeOnPost");
         String q = "select count(*) from liked where pid=?";
         try {
             PreparedStatement p = this.con.prepareStatement(q);
@@ -49,6 +50,8 @@ public class LikeDao {
     }
 
     public boolean isLikedByUser(int pid, int uid) {
+
+        System.out.println("called isLikedByUser");
         boolean f = false;
         try {
             PreparedStatement p = this.con.prepareStatement("select * from liked where pid=? and uid=?");
@@ -65,6 +68,8 @@ public class LikeDao {
     }
 
     public boolean deleteLike(int pid, int uid) {
+
+        System.out.println("called deleteLike");
         boolean f = false;
         try {
             PreparedStatement p = this.con.prepareStatement("delete from liked where pid=? and uid=? ");

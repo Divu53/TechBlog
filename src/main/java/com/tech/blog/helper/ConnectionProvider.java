@@ -13,7 +13,7 @@ public class ConnectionProvider {
 			 if(con==null) {
 				 
 				  Class.forName("com.mysql.jdbc.Driver");
-				  
+//				  DIVANSHI53234412
 				  con =DriverManager.getConnection("jdbc:mysql://localhost:3306/TechBlog","root","DIVANSHI53234412");
 			 }
 			 
