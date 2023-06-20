@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.tech.blog.entities.Category;
 import com.tech.blog.entities.Post;
@@ -64,6 +66,74 @@ public class PostDao {
 		
 		
 		return f;
+		
+	}
+	
+	
+	public List<Post> getAllList() {
+		
+		List<Post>  list = new ArrayList<>();
+		
+		try {
+			PreparedStatement p = con.prepareStatement("select * from posts order by pid desc");
+			ResultSet set=p.executeQuery();
+			
+			while(set.next()) {
+				
+				int pid = set.getInt("pid");
+				String pTitle = set.getNString("pTitle");
+				String pContent = set.getString("pContent");
+				String pCode = set.getString("pCode");
+				String pPic = set.getString("pPic");
+				Timestamp date = set.getTimestamp("pDate");
+				int catID= set.getInt("catID");
+				int userId = set.getInt("userId");
+				
+			Post post = new Post(pid, pTitle, pContent, pCode, pPic, date, catID, userId);
+			list.add(post);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
+	
+	
+	
+	public List<Post> getPostBycatID(int catID){
+		
+		List<Post>  list = new ArrayList<>();
+		
+		try {
+			PreparedStatement p = con.prepareStatement("select * from posts where catID=?");
+			p.setInt(1, catID);
+			ResultSet set=p.executeQuery();
+			
+			while(set.next()) {
+				
+				int pid = set.getInt("pid");
+				String pTitle = set.getNString("pTitle");
+				String pContent = set.getString("pContent");
+				String pCode = set.getString("pCode");
+				String pPic = set.getString("pPic");
+				Timestamp date = set.getTimestamp("pDate");
+			
+				int userId = set.getInt("userId");
+				
+			Post post = new Post(pid, pTitle, pContent, pCode, pPic, date, catID, userId);
+			list.add(post);
+	      
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			return list;
 		
 	}
 
