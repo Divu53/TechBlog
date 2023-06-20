@@ -69,6 +69,7 @@ public class Helper {
     public static boolean saveFile(InputStream is, String path) {
         boolean f = false;
 
+        System.out.println(is);
         try {
             byte b[] = new byte[is.available()];
 
