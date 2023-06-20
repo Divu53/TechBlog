@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.tech.blog.entities.Category;
 import com.tech.blog.entities.Post;
@@ -66,5 +68,103 @@ public class PostDao {
 		return f;
 		
 	}
+	
+	
+	public List<Post> getAllList() {
+		
+		List<Post>  list = new ArrayList<>();
+		
+		try {
+			PreparedStatement p = con.prepareStatement("select * from posts order by pid desc");
+			ResultSet set=p.executeQuery();
+			
+			while(set.next()) {
+				
+				int pid = set.getInt("pid");
+				String pTitle = set.getNString("pTitle");
+				String pContent = set.getString("pContent");
+				String pCode = set.getString("pCode");
+				String pPic = set.getString("pPic");
+				Timestamp date = set.getTimestamp("pDate");
+				int catID= set.getInt("catID");
+				int userId = set.getInt("userId");
+				
+			Post post = new Post(pid, pTitle, pContent, pCode, pPic, date, catID, userId);
+			list.add(post);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
+	
+	
+	
+	public List<Post> getPostBycatID(int catID){
+		
+		List<Post>  list = new ArrayList<>();
+		
+		try {
+			PreparedStatement p = con.prepareStatement("select * from posts where catID=?");
+			p.setInt(1, catID);
+			ResultSet set=p.executeQuery();
+			
+			while(set.next()) {
+				
+				int pid = set.getInt("pid");
+				String pTitle = set.getNString("pTitle");
+				String pContent = set.getString("pContent");
+				String pCode = set.getString("pCode");
+				String pPic = set.getString("pPic");
+				Timestamp date = set.getTimestamp("pDate");
+			
+				int userId = set.getInt("userId");
+				
+			Post post = new Post(pid, pTitle, pContent, pCode, pPic, date, catID, userId);
+			list.add(post);
+	      
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			return list;
+		
+	}
+	
+
+    public Post getPostByPostId(int postId) {
+        Post post = null;
+        String q = "select * from posts where pid=?";
+        try {
+            PreparedStatement p = this.con.prepareStatement(q);
+            p.setInt(1, postId);
+
+            ResultSet set = p.executeQuery();
+
+            if (set.next()) {
+
+                int pid = set.getInt("pid");
+                String pTitle = set.getString("pTitle");
+                String pContent = set.getString("pContent");
+                String pCode = set.getString("pCode");
+                String pPic = set.getString("pPic");
+                Timestamp date = set.getTimestamp("pDate");
+                int cid=set.getInt("catId");
+                int userId = set.getInt("userId");
+                post = new Post(pid, pTitle, pContent, pCode, pPic, date, cid, userId);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return post;
+    }
 
 }

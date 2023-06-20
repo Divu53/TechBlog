@@ -41,9 +41,6 @@ public class AddPostServlet extends HttpServlet {
 		User user =(User)session.getAttribute("CurrentUser");
 		
 		
-//		out.println("Your post title is :" + pTitle);
-//		out.println(part.getSubmittedFileName());
-//		
 		Post p = new Post(pTitle, pContent, pCode, part.getSubmittedFileName(), null, cid, user.getId());
 		PostDao dao = new PostDao( ConnectionProvider.getConnection());
 		

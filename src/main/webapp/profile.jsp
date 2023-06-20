@@ -51,10 +51,9 @@ if (user == null) {
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">
-				<span 
-						class="fa fa-bell-o  nav-item-color">&nbsp;learnCode with Divu </span> 	<span
-						class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link" href="#"> <span
+						class="fa fa-bell-o  nav-item-color">&nbsp;learnCode with
+							Divu </span> <span class="sr-only">(current)</span></a></li>
 
 
 
@@ -63,15 +62,17 @@ if (user == null) {
 
 
 
-				<li class="nav-item">
-				<a class="nav-link" href="#" data-toggle="modal" data-target="#add-post-modal"><span class="fa fa-asterisk nav-item-color">&nbsp;Do Post</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="#"
+					data-toggle="modal" data-target="#add-post-modal"><span
+						class="fa fa-asterisk nav-item-color">&nbsp;Do Post</span></a></li>
 
 
 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <span class="fa fa-check-circle-o nav-item-color">&nbsp;Dropdown</span>
+					aria-expanded="false"> <span
+						class="fa fa-check-circle-o nav-item-color">&nbsp;Dropdown</span>
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="#">Programming Language</a> <a
@@ -87,7 +88,8 @@ if (user == null) {
 
 				<li class="nav-item"><a class="nav-link" href="#!"
 					data-toggle="modal" data-target="#example"><span
-						class="fa fa-user-circle nav-item-color">&nbsp;<%=user.getName()%> </span></a></li>
+						class="fa fa-user-circle nav-item-color">&nbsp;<%=user.getName()%>
+					</span></a></li>
 
 				<li class="nav-item"><a class="nav-link" href="LogoutServlet"><span
 						class="fa fa-user-plus nav-item-color">&nbsp;Logout</span> </a></li>
@@ -114,6 +116,53 @@ if (user == null) {
 	%>
 
 
+	<main>
+		<div class="container">
+			<div class="row mt-4">
+				<div class="col-md-4">
+
+					<div class="list-group">
+						<a href="#"  onclick="getPosts(0, this)" class=" c-link list-group-item list-group-item-action active">
+							All posts </a> 
+							
+							<%
+							
+							PostDao d = new PostDao(ConnectionProvider.getConnection());
+							ArrayList<Category> list1 = d.getAllCategories();
+							for(Category cc : list1)
+							{
+								
+							 %>
+							    <a href="#" onclick=k="getPosts(<%= cc.getCid()%> , this)" class=" c-link list-group-item list-group-item-action"><%= cc.getName() %></a>
+							 
+							 <% 
+							}
+							 %>
+							
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-8" >
+			   <div class="container text-center" id="loader">
+                            <i class="fa fa-refresh fa-4x fa-spin"></i>
+                            <h3 class="mt-2">Loading...</h3>
+                        </div>
+			 <div class="container-fluid" id="post-container">
+			
+			</div>
+              
+
+		</div>
+
+
+		</div>
+
+
+
+
+	</main>
+
 
 
 
@@ -134,8 +183,8 @@ if (user == null) {
 				</div>
 				<div class="modal-body">
 					<div class="container text-center">
-						<img src="pics/<%= user.getProfile()%>" class="img-fluid" style="border-radius:50%;max-width: 150px;;" >
-						<br>
+						<img src="pics/<%=user.getProfile()%>" class="img-fluid"
+							style="border-radius: 50%; max-width: 150px;"> <br>
 						<h5 class="modal-title" id="exampleModalLabel">
 							<%=user.getName()%></h5>
 
@@ -246,7 +295,7 @@ if (user == null) {
 
 
 
-	
+
 
 	<!-- Modal -->
 	<div class="modal fade" id="add-post-modal" tabindex="-1" role="dialog"
@@ -254,64 +303,68 @@ if (user == null) {
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Provide the post Details.....</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Provide the
+						post Details.....</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				
+
 				<div class="modal-body">
-				  <form id="add-post-form" action="AddPostServlet"   enctype="multipart/form-data" method="post">
-				  
-				  <div class="form-group">
-				    <select class="form-control" name="cid">
-				      <option selected="disabled">---Select Category---</option>
-				    
-				    <%
-				      PostDao postd = new PostDao(ConnectionProvider.getConnection());
-				      ArrayList<Category> list = postd.getAllCategories();
-				      for(Category c : list){
-				    %>
-				      <option value="<%=c.getCid()%>"><%= c.getName() %></option>
-				      
-				    <%
-				      }
-				    %>
-				    </select>
-				  </div>
-				  
-				    <div class="form-group">
-				       <input name="pTitle" type="text" placeholder="Enter post title" class="form-control"/>
-				    </div>
-				    
-				    <div class="form-group">
-				       <textarea name="pContent" class="form-control" style="height: 150px" placeholder="Enter your content"></textarea>
-				    </div>
-				    
-				     <div class="form-group">
-				       <textarea name="pCode" class="form-control" style="height: 150px" placeholder="Enter your program(if any)"></textarea>
-				    </div>
-				    
-				    <div class="form-group">
-				      <label>Select your pic....</label>
-				      <br>
-				      <input type="file" name="pic">
-				    </div>
-				    
-				    <div class="container text-center">
-				      <button type="submit" class="btn btn-primary">Post</button>
-				    
-				    </div>
-				    
-				  
-				  </form>
-				
-				
-				
-				
-				
-				 
+					<form id="add-post-form" action="AddPostServlet"
+						enctype="multipart/form-data" method="post">
+
+						<div class="form-group">
+							<select class="form-control" name="cid">
+								<option selected="disabled">---Select Category---</option>
+
+								<%
+								PostDao postd = new PostDao(ConnectionProvider.getConnection());
+								ArrayList<Category> list = postd.getAllCategories();
+								for (Category c : list) {
+								%>
+								<option value="<%=c.getCid()%>"><%=c.getName()%></option>
+
+								<%
+								}
+								%>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<input name="pTitle" type="text" placeholder="Enter post title"
+								class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<textarea name="pContent" class="form-control"
+								style="height: 150px" placeholder="Enter your content"></textarea>
+						</div>
+
+						<div class="form-group">
+							<textarea name="pCode" class="form-control" style="height: 150px"
+								placeholder="Enter your program(if any)"></textarea>
+						</div>
+
+						<div class="form-group">
+							<label>Select your pic....</label> <br> <input type="file"
+								name="pic">
+						</div>
+
+						<div class="container text-center">
+							<button type="submit" class="btn btn-primary">Post</button>
+
+						</div>
+
+
+					</form>
+
+
+
+
+
+
 				</div>
 			</div>
 		</div>
@@ -342,8 +395,9 @@ if (user == null) {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			var editStatus = false;
@@ -362,48 +416,104 @@ if (user == null) {
 			})
 		});
 	</script>
+
+
+
+
+
+	<script>
 	
+
+							$("#add-post-form")
+									.on(
+											"submit",
+											function(event) {
+												//this code gets called when form is submitted....
+												event.preventDefault();
+												console
+														.log("you have clicked on submit..")
+												var form = new FormData(this);
+
+												//now requesting to server
+
+												$
+														.ajax({
+															url : "AddPostServlet",
+															type : 'POST',
+															data : form,
+															success : function(
+																	data,
+																	textStatus,
+																	jqXHR) {
+																//success ..
+																if (data.trim() == 'done'
+																		|| jqXHR.status == 200) {
+																	swal(
+																			"Good job!",
+																			"saved successfully",
+																			"success");
+																} else {
+																	swal(
+																			"Error!!",
+																			"Something went wrong try again...",
+																			"error");
+																}
+															},
+															error : function(
+																	jqXHR,
+																	textStatus,
+																	errorThrown) {
+																//error..
+																swal(
+																		"Error!!",
+																		"Something went wrong try again...",
+																		"error");
+															},
+															processData : false,
+															contentType : false
+														})
+											})
+						
+	</script>
 	
-	
-	
-	
-	      <script>
-		$(document).ready(function() {
-			console.log("PAGE BE READY....");
-			
-				 $("#add-post-form").on("submit", function (event) {
-	                    //this code gets called when form is submitted....
-	                    event.preventDefault();
-	                    console.log("you have clicked on submit..")
-	                    var form = new FormData(this);
-	                    
-	                    //now requesting to server
-	        
-	                    
-	                      $.ajax({
-	                        url: "AddPostServlet",
-	                        type: 'POST',
-	                        data: form,
-	                        success: function (data, textStatus, jqXHR) {
-	                            //success ..
-	                            if (data.trim() == 'done' || jqXHR.status == 200)
-	                            {
-	                                swal("Good job!", "saved successfully", "success");
-	                            } else
-	                            {
-	                                swal("Error!!", "Something went wrong try again...", "error");
-	                            }
-	                        },
-	                        error: function (jqXHR, textStatus, errorThrown) {
-	                            //error..
-	                            swal("Error!!", "Something went wrong try again...", "error");
-	                        },
-	                        processData: false,
-	                        contentType: false
-	                    })
-	                })
+
+        <!--loading post using ajax-->
+        <script>
+
+            function getPosts(catID, temp) {
+                $("#loader").show();
+                $("#post-container").hide()
+
+                $(".c-link").removeClass('active')
+
+
+                $.ajax({
+                    url: "load_post.jsp",
+                    data: {cid: catID},
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        $("#loader").hide();
+                        $("#post-container").show();
+                        $('#post-container').html(data)
+                        $(temp).addClass('active')
+
+                    },
                 })
-            </script>
-                        }
+
+            }
+
+            $(document).ready(function (e) {
+
+                let allPostRef = $('.c-link')[0]
+                getPosts(0, allPostRef)
+
+
+            })
+        </script>
+
+	
+	
+	
+	
 </body>
 </html>
