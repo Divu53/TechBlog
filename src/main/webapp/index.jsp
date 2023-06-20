@@ -15,6 +15,12 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/mystyle.css" type="text/css" />
 
+<style>
+	.banner-bg{
+	 clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 63% 100%, 22% 91%, 0 99%, 0 0);
+	}
+</style>
+
 </head>
 <body>
 	<%@include file="navbar.jsp"%>

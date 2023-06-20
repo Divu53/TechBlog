@@ -37,6 +37,7 @@ public class EditServlet extends HttpServlet {
 		String imageName =part.getSubmittedFileName();
 		
 		
+		
 		HttpSession s = request.getSession();
 	       User user =(User)s.getAttribute("CurrentUser");
            user.setEmail(userEmail);
@@ -50,11 +51,11 @@ public class EditServlet extends HttpServlet {
 	       boolean ans = userDao.updateUser(user);
 	      
 	      if(ans) {
-	    	  out.println("upadated to db");
 	    	  
 	    	  String path = request.getRealPath("/")+"pics" + File.separator + user.getProfile();
 	    	  
 	    	  String patholdFile  = request.getRealPath("/")+"pics" + File.separator + oldFile;
+	    	  
 	    	  
 	    	  if(!oldFile.equals("default.png")) {
 	    	     Helper.deleteFile(patholdFile);
@@ -80,8 +81,4 @@ public class EditServlet extends HttpServlet {
 	       
 	    
 	}
-
-	
-
-
 }
