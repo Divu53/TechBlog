@@ -1,9 +1,10 @@
-<%@page import="com.tech.blog.entities.User"%>
+
 <%@page import="com.tech.blog.dao.LikeDao"%>
 <%@page import="com.tech.blog.entities.Post"%>
 <%@page import="java.util.List"%>
 <%@page import="com.tech.blog.helper.ConnectionProvider"%>
 <%@page import="com.tech.blog.dao.PostDao"%>
+<%@page import="com.tech.blog.entities.User"%>
 
 <div class="row">
 
@@ -16,6 +17,8 @@
         PostDao d = new PostDao(ConnectionProvider.getConnection());
         
         int cid = Integer.parseInt(request.getParameter("cid"));
+
+    	
         List<Post> posts = null;
         if (cid == 0) {
             posts = d.getAllList();
@@ -41,8 +44,9 @@
             </div>
             <div class="card-footer primary-background text-center">
                 <% 
-                    LinkDao ld = new LikeDao(ConnectionProvider.getConnection());
+                	LikeDao ld = new LikeDao(ConnectionProvider.getConnection());
                 %>
+
 
                 <a href="#!" onclick="doLike(<%= p.getPid()%>,<%= uuu.getId()%>)" class="btn btn-outline-light btn-sm"> 
                 <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>

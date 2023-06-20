@@ -81,6 +81,8 @@ public class User {
 	public Timestamp getDatatime() {
 		return datatime;
 	}
+	
+	
 
 	public void setDatatime(Timestamp datatime) {
 		this.datatime = datatime;

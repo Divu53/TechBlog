@@ -3,22 +3,18 @@ package com.tech.blog.entities;
 import java.sql.Timestamp;
 
 public class Post {
-	
-	private int pid;
-	private String pTitle;
-	private String pContent;
-	private String pCode;
-	private String pPic;
-	private Timestamp pDate;
-	private int catID;
-	private int userID;
-	
-	
-	
-	public Post() {
-		super();
-	}
 
+    private int pid;
+    private String pTitle;
+    private String pContent;
+    private String pCode;
+    private String pPic;
+    private Timestamp pDate;
+    private int catID;
+    private int userID;
+
+    public Post() {
+    }
 
 
 	public Post(int pid, String pTitle, String pContent, String pCode, String pPic, Timestamp pDate, int catID , int userID) {

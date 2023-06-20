@@ -473,15 +473,14 @@ if (user == null) {
 															contentType : false
 														})
 											})
-						})
+						
 	</script>
 	
-	  </script>
 
         <!--loading post using ajax-->
         <script>
 
-            function getPosts(catId, temp) {
+            function getPosts(catID, temp) {
                 $("#loader").show();
                 $("#post-container").hide()
 
@@ -489,8 +488,8 @@ if (user == null) {
 
 
                 $.ajax({
-                    url: "load_posts.jsp",
-                    data: {cid: catId},
+                    url: "load_post.jsp",
+                    data: {cid: catID},
                     success: function (data, textStatus, jqXHR) {
                         console.log(data);
                         $("#loader").hide();
@@ -498,7 +497,7 @@ if (user == null) {
                         $('#post-container').html(data)
                         $(temp).addClass('active')
 
-                    }
+                    },
                 })
 
             }
@@ -511,11 +510,10 @@ if (user == null) {
 
             })
         </script>
+
 	
 	
 	
 	
-	
-	}
 </body>
 </html>
