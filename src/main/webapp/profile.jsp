@@ -41,7 +41,7 @@ if (user == null) {
 
 	<nav class="navbar navbar-expand-lg navbar-light   primary-background">
 		<a class="navbar-brand" href="index.jsp"><span
-			class="fa fa-asterisk"></span>TechBlog</a>
+			class="fa fa-asterisk nav-item-color">TechBlog</span></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -51,26 +51,27 @@ if (user == null) {
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#"><span
-						class="fa fa-bell-o"></span> learnCode with Divu <span
+				<li class="nav-item active"><a class="nav-link" href="#">
+				<span 
+						class="fa fa-bell-o  nav-item-color">&nbsp;learnCode with Divu </span> 	<span
 						class="sr-only">(current)</span></a></li>
 
 
 
 				<li class="nav-item"><a class="nav-link" href="#"><span
-						class="fa fa-id-card-o"></span>Contact Us</a></li>
+						class="fa fa-id-card-o nav-item-color">&nbsp;Contact Us</span></a></li>
 
 
 
 				<li class="nav-item">
-				<a class="nav-link" href="#" data-toggle="modal" data-target="#add-post-modal"><span class="fa fa-asterisk"></span>Do Post</a></li>
+				<a class="nav-link" href="#" data-toggle="modal" data-target="#add-post-modal"><span class="fa fa-asterisk nav-item-color">&nbsp;Do Post</span></a></li>
 
 
 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <span class="fa fa-check-circle-o"></span>Dropdown
+					aria-expanded="false"> <span class="fa fa-check-circle-o nav-item-color">&nbsp;Dropdown</span>
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="#">Programming Language</a> <a
@@ -86,10 +87,10 @@ if (user == null) {
 
 				<li class="nav-item"><a class="nav-link" href="#!"
 					data-toggle="modal" data-target="#example"><span
-						class="fa fa-user-circle"></span><%=user.getName()%> </a></li>
+						class="fa fa-user-circle nav-item-color">&nbsp;<%=user.getName()%> </span></a></li>
 
 				<li class="nav-item"><a class="nav-link" href="LogoutServlet"><span
-						class="fa fa-user-plus"></span>Logout </a></li>
+						class="fa fa-user-plus nav-item-color">&nbsp;Logout</span> </a></li>
 
 
 			</ul>
@@ -133,9 +134,8 @@ if (user == null) {
 				</div>
 				<div class="modal-body">
 					<div class="container text-center">
-
-						<img src="pics/<%=user.getProfile()%>" class="img-fluid"
-							style="border-radius: 50%; max-width: 100 px"> <br>
+						<img src="pics/<%= user.getProfile()%>" class="img-fluid" style="border-radius:50%;max-width: 150px;;" >
+						<br>
 						<h5 class="modal-title" id="exampleModalLabel">
 							<%=user.getName()%></h5>
 
@@ -262,10 +262,10 @@ if (user == null) {
 				</div>
 				
 				<div class="modal-body">
-				  <form action="AddPostServlet" method="post">
+				  <form id="add-post-form" action="AddPostServlet"   enctype="multipart/form-data" method="post">
 				  
 				  <div class="form-group">
-				    <select class="form-control">
+				    <select class="form-control" name="cid">
 				      <option selected="disabled">---Select Category---</option>
 				    
 				    <%
@@ -273,7 +273,8 @@ if (user == null) {
 				      ArrayList<Category> list = postd.getAllCategories();
 				      for(Category c : list){
 				    %>
-				      <option><%= c.getName() %></option>
+				      <option value="<%=c.getCid()%>"><%= c.getName() %></option>
+				      
 				    <%
 				      }
 				    %>
@@ -281,24 +282,28 @@ if (user == null) {
 				  </div>
 				  
 				    <div class="form-group">
-				       <input type="text" placeholder="Enter post title" class="form-control"/>
+				       <input name="pTitle" type="text" placeholder="Enter post title" class="form-control"/>
 				    </div>
 				    
 				    <div class="form-group">
-				       <textarea class="form-control" style="height: 100px" placeholder="Enter your content"></textarea>
+				       <textarea name="pContent" class="form-control" style="height: 150px" placeholder="Enter your content"></textarea>
 				    </div>
 				    
 				     <div class="form-group">
-				       <textarea class="form-control" style="height: 100px" placeholder="Enter your program(if any)"></textarea>
+				       <textarea name="pCode" class="form-control" style="height: 150px" placeholder="Enter your program(if any)"></textarea>
 				    </div>
 				    
 				    <div class="form-group">
 				      <label>Select your pic....</label>
 				      <br>
-				      <input type="file"/>
+				      <input type="file" name="pic">
 				    </div>
-				  
-				  
+				    
+				    <div class="container text-center">
+				      <button type="submit" class="btn btn-primary">Post</button>
+				    
+				    </div>
+				    
 				  
 				  </form>
 				
@@ -306,12 +311,7 @@ if (user == null) {
 				
 				
 				
-				
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+				 
 				</div>
 			</div>
 		</div>
@@ -342,7 +342,8 @@ if (user == null) {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			var editStatus = false;
@@ -361,5 +362,48 @@ if (user == null) {
 			})
 		});
 	</script>
+	
+	
+	
+	
+	
+	      <script>
+		$(document).ready(function() {
+			console.log("PAGE BE READY....");
+			
+				 $("#add-post-form").on("submit", function (event) {
+	                    //this code gets called when form is submitted....
+	                    event.preventDefault();
+	                    console.log("you have clicked on submit..")
+	                    var form = new FormData(this);
+	                    
+	                    //now requesting to server
+	        
+	                    
+	                      $.ajax({
+	                        url: "AddPostServlet",
+	                        type: 'POST',
+	                        data: form,
+	                        success: function (data, textStatus, jqXHR) {
+	                            //success ..
+	                            if (data.trim() == 'done' || jqXHR.status == 200)
+	                            {
+	                                swal("Good job!", "saved successfully", "success");
+	                            } else
+	                            {
+	                                swal("Error!!", "Something went wrong try again...", "error");
+	                            }
+	                        },
+	                        error: function (jqXHR, textStatus, errorThrown) {
+	                            //error..
+	                            swal("Error!!", "Something went wrong try again...", "error");
+	                        },
+	                        processData: false,
+	                        contentType: false
+	                    })
+	                })
+                })
+            </script>
+                        }
 </body>
 </html>

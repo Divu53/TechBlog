@@ -15,13 +15,19 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/mystyle.css" type="text/css" />
 
+<style>
+	.banner-bg{
+	 clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 63% 100%, 22% 91%, 0 99%, 0 0);
+	}
+</style>
+
 </head>
 <body>
 	<%@include file="navbar.jsp"%>
 
 	<div class="container-fluid p-0 m-0">
 
-		<div  class="jumbotron primary-background text-white">
+		<div style="border-radius : 0 " class="jumbotron banner-bg primary-background text-white">
 			<div class="container">
 				<h3 class="display-3">Welcome to TechBlog</h3>
 

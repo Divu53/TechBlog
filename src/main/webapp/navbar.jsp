@@ -15,7 +15,7 @@
 					class="fa fa-bell-o nav-item-color">&nbsp; learnCode with Divu</span> <span
 					class="sr-only">(current)</span></a></li>
 			<li class="nav-item"><a class="nav-link" href="#"><span
-					class="fa fa-id-card-o nav-item-color">&nbsp; Contact Us</span></a></li>
+					class="fa fa-id-card-o  nav-item-color">&nbsp; Contact Us</span></a></li>
 
 			<li class="nav-item"><a class="nav-link" href="login_page.jsp"><span
 					class="fa fa-user-circle nav-item-color ">&nbsp; login</span> </a></li>
