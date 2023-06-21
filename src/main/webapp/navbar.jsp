@@ -23,18 +23,7 @@
 			<li class="nav-item"><a class="nav-link"
 				href="register_page.jsp"><span class="fa fa-user-plus nav-item-color">&nbsp; sign
 					up</span></a></li>
-
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle"  href="#" id="navbarDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <span class="fa fa-check-circle-o nav-item-color">&nbsp; Dropdown</span>
-			</a>
-				<div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Programming Language</a> <a
-						class="dropdown-item" href="#">Project Implementation</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Data structure</a>
-				</div>
+				
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
 			<input class="form-control mr-sm-2" type="search"

@@ -60,12 +60,13 @@
 		<div class="row mb-5">
 
 		<div class="col-md-4">
-				<div class="card">
-					<div class="card-body">
-
-						<h5 class="card-title">Java Programming</h5>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
+				<div class="card" style="min-height: 320px" >
+					<div class="card-body" style="display :flex; flex-direction: column; justify-content: space-between;">
+                     
+                    <div>
+						<h5 class="card-title"> Programming Language</h5>
+						<p class="card-text">A programming language provides a set of predefined symbols, keywords, and rules that allow programmers to express their ideas and algorithms in a structured and understandable way. It defines the syntax and semantics that determine how code is written and interpreted by a computer or compiler.</p>
+					</div>
 						<a href="#" class="btn primary-background text-white">Read
 							more</a>
 					</div>
@@ -73,13 +74,13 @@
 			</div>
 
 
-			<div class="col-md-4">
-				<div class="card">
-					<div class="card-body">
-
-						<h5 class="card-title">Java Programming</h5>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
+			<div  class="col-md-4">
+				<div class="card" style="min-height: 320px" >
+					<div class="card-body" style="display :flex; flex-direction: column; justify-content: space-between;">
+                     <div>
+						<h5 class="card-title">Database Management System</h5>
+						<p class="card-text">A database management system (DBMS) is software that allows users to manage and manipulate databases. It provides a structured approach for storing, organizing, and retrieving data efficiently.</p>
+					</div>
 						<a href="#" class="btn primary-background text-white">Read
 							more</a>
 					</div>
@@ -87,13 +88,13 @@
 			</div>
 
 
-			<div class="col-md-4">
-				<div class="card">
-					<div class="card-body">
-
-						<h5 class="card-title">Java Programming</h5>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
+			<div   class="col-md-4">
+				<div class="card" style="min-height: 320px">
+					<div class="card-body" style="display :flex; flex-direction: column; justify-content: space-between;">
+                      <div>
+						<h5 class="card-title">Cloud Platform</h5>
+						<p class="card-text">A cloud platform is a virtualized environment that enables users to access and utilize computing resources, such as virtual machines, storage, and networking, through the internet without the need for on-premises hardware infrastructure.</p>
+						</div>
 						<a href="#" class="btn primary-background text-white">Read
 							more</a>
 					</div>
@@ -105,13 +106,14 @@
 		
 		<div class="row mt-3">
 			
-			<div class="col-md-4">
-				<div class="card">
-					<div class="card-body">
-
-						<h5 class="card-title">Java Programming</h5>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
+			<div   class="col-md-4">
+				<div class="card" style="min-height: 320px">
+					<div class="card-body"style="display :flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+						<h5 class="card-title">Machine Learning</h5>
+						<p class="card-text">Machine learning is a subset of artificial intelligence that focuses on the development of algorithms and models that allow computers to learn and make predictions or decisions based on data without being explicitly programmed.</p>
+					
+						</div>
 						<a href="#" class="btn primary-background text-white">Read
 							more</a>
 					</div>
@@ -120,12 +122,12 @@
 
 
 			<div class="col-md-4">
-				<div class="card">
-					<div class="card-body">
-
-						<h5 class="card-title">Java Programming</h5>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
+				<div class="card"  style="min-height: 320px">
+					<div class="card-body" style="display :flex; flex-direction: column; justify-content: space-between;">
+                       <div>
+						<h5 class="card-title">Blockchain</h5>
+						<p class="card-text">Blockchain is a distributed and decentralized digital ledger technology that securely records and verifies transactions across multiple computers in a network.</p>
+						</div>
 						<a href="#" class="btn primary-background text-white">Read
 							more</a>
 					</div>
@@ -133,13 +135,13 @@
 			</div>
 
 
-			<div class="col-md-4">
-				<div class="card">
-					<div class="card-body">
-
-						<h5 class="card-title">Java Programming</h5>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
+			<div  class="col-md-4">
+				<div class="card" style="min-height: 320px">
+					<div class="card-body"style="display :flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+						<h5 class="card-title">Cyber Security</h5>
+						<p class="card-text">Cybersecurity aims to maintain the confidentiality of sensitive information by preventing unauthorized access. This involves implementing measures such as encryption, access controls, and secure communication protocols.</p>
+						</div>
 						<a href="#" class="btn primary-background text-white">Read
 							more</a>
 					</div>
@@ -149,9 +151,8 @@
 				
 		</div>
 
+</div>
 
-
-	</div>
 	
 
 
