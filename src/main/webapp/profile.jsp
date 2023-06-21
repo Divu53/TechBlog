@@ -120,26 +120,26 @@ if (user == null) {
 			<div class="row mt-4">
 				<div class="col-md-4">
 
-					<div class="list-group">
-						<a href="#"  onclick="getPosts(0, this)" class=" c-link list-group-item list-group-item-action active">
-							All posts </a> 
-							
-							<%
-							
-							PostDao d = new PostDao(ConnectionProvider.getConnection());
-							ArrayList<Category> list1 = d.getAllCategories();
-							for(Category cc : list1)
-							{
-								
-							 %>
-							    <a href="#" onclick=k="getPosts(<%= cc.getCid()%> , this)" class=" c-link list-group-item list-group-item-action"><%= cc.getName() %></a>
-							 
-							 <% 
-							}
-							 %>
-							
-					</div>
-				</div>
+					 <div class="list-group">
+                            <a href="#" onclick="getPosts(0, this)"  class=" c-link list-group-item list-group-item-action active">
+                                All Posts
+                            </a>
+                            <!--categories-->
+
+                            <%                                PostDao d = new PostDao(ConnectionProvider.getConnection());
+                                ArrayList<Category> list1 = d.getAllCategories();
+                                for (Category cc : list1) {
+
+                            %>
+                            <a href="#" onclick="getPosts(<%= cc.getCid()%>, this)" class=" c-link list-group-item list-group-item-action"><%= cc.getName()%></a>
+
+
+                            <%                                        }
+
+                            %>
+                        </div>
+
+			</div>
 
 			</div>
 			<div class="col-md-8" >
@@ -480,6 +480,7 @@ if (user == null) {
         <script>
 
             function getPosts(catID, temp) {
+            	
                 $("#loader").show();
                 $("#post-container").hide()
 
