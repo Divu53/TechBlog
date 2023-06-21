@@ -81,7 +81,12 @@ public class Post {
 
 
 	public String getpContent() {
-		return pContent;
+			return pContent;
+	}
+	
+	
+	public String getpSubContent() {
+		return this.pContent.length() > 150 ? this.pContent.substring(0,150).concat("..."): this.pContent;
 	}
 
 

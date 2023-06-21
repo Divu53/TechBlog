@@ -27,7 +27,7 @@
 
 	<div class="container-fluid p-0 m-0">
 
-		<div  style="border-radius:0;" class="jumbotron primary-background text-white">
+		<div  style="background:#0E2954;border-radius:0;" class="jumbotron primary-background text-white">
 			<div class="container">
 				<h3 class="display-3">Welcome to TechBlog</h3>
 
@@ -154,6 +154,8 @@
 	</div>
 	
 
+
+	<%@include file="footer.jsp"%>
 
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js"
 		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="

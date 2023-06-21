@@ -115,12 +115,10 @@ if (user == null) {
 	%>
 
 
-	<main>
-		<div class="container">
-			<div class="row mt-4">
-				<div class="col-md-4">
-
-					 <div class="list-group">
+		<div  class="px-5 d-flex">
+			<div class="row mt-5 ">
+			<div >
+					 <div  class="list-group">
                             <a href="#" onclick="getPosts(0, this)"  class=" c-link list-group-item list-group-item-action active">
                                 All Posts
                             </a>
@@ -140,9 +138,8 @@ if (user == null) {
                         </div>
 
 			</div>
-
 			</div>
-			<div class="col-md-8" >
+			<div class="col-md-9" >
 			   <div class="container text-center" id="loader">
                             <i class="fa fa-refresh fa-4x fa-spin"></i>
                             <h3 class="mt-2">Loading...</h3>
@@ -159,8 +156,6 @@ if (user == null) {
 
 
 
-
-	</main>
 
 
 
@@ -379,6 +374,7 @@ if (user == null) {
 
 
 
+	<%@include file="footer.jsp"%>
 
 
 
@@ -491,7 +487,7 @@ if (user == null) {
                     url: "load_post.jsp",
                     data: {cid: catID},
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
+                        
                         $("#loader").hide();
                         $("#post-container").show();
                         $('#post-container').html(data)

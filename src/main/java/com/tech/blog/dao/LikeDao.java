@@ -14,13 +14,20 @@ public class LikeDao {
         boolean f = false;
         System.out.println("called insertLike");
         try {
-            String q = "insert into liked(pid,uid)values(?,?)";
-            PreparedStatement p = this.con.prepareStatement(q);
-            //values set...
-            p.setInt(1, pid);
-            p.setInt(2, uid);
-            p.executeUpdate();
-            f = true;
+        	
+        	if(isLikedByUser(pid,uid)) {
+        		deleteLike(pid, uid);
+        	}
+        	else {
+        		String q = "insert into liked(pid,uid)values(?,?)";
+                PreparedStatement p = this.con.prepareStatement(q);
+                //values set...
+                p.setInt(1, pid);
+                p.setInt(2, uid);
+                p.executeUpdate();
+                f = true;
+        	}
+            
 
         } catch (Exception e) {
         	System.out.println();

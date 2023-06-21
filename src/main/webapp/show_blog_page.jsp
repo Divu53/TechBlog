@@ -71,10 +71,104 @@ if (user == null) {
             body{
                 background:url(img/bg.jpeg);
                 background-size: cover;
+                
                 background-attachment: fixed;
             }
 
         </style>
+        
+            <style>
+    	.footer-clean {
+  			padding:50px 0;
+  			background-color:#0E2954;
+  			color:#fff;
+	}
+
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:#fff;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+  
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+   color:#fff;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+  margin-top:14px;
+  margin-bottom:0;
+  font-size:13px;
+  opacity:0.6;
+}
+    	
+    
+    </style>
+        
     </head>
     <body>
 
@@ -137,11 +231,9 @@ if (user == null) {
         <!--main content of body-->
 
 
-        <div class="container">
+        <div class="container my-5">
 
-            <div class="row my-4">
-
-                <div class="col-md-8 offset-md-2">
+                <div style="margin:auto;" class="col-md-12 offset-md-2">
 
 
                     <div class="card">
@@ -155,7 +247,7 @@ if (user == null) {
 
                         <div class="card-body">
 
-                            <img class="card-img-top my-2" src="blog_pics/<%= p.getpPic()%>" alt="Card image cap">
+                            <img class="card-img-top my-2" height="300px" src="blog_pics/<%= p.getpPic()%>" alt="Card image cap">
 
 
                             <div class="row my-3 row-user">
@@ -171,7 +263,7 @@ if (user == null) {
                             </div>
 
 
-                            <p class="post-content"><%= p.getpContent()%></p> 
+                            <p class="post-content"><%= p.getpContent() %></p> 
 
                             <br>
                             <br>
@@ -202,15 +294,8 @@ if (user == null) {
 
                 </div>
 
-            </div>
 
         </div>
-
-
-
-        <!--end of main content  of body-->
-
-
         <!--profile modal-->
 
 
@@ -330,6 +415,8 @@ if (user == null) {
         <!--end of profile modal-->
 
         <!--add post modal-->
+        
+        
 
 
 
@@ -392,12 +479,54 @@ if (user == null) {
                 </div>
             </div>
         </div>
+        
+        
 
 
         <!--END add post modal-->
 
 
 
+<div class="footer-clean" style="margin-top: 20px;">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Legacy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Careers</h3>
+                        <ul>
+                            <li><a href="#">Job openings</a></li>
+                            <li><a href="#">Employee success</a></li>
+                            <li><a href="#">Benefits</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <p class="copyright">Company Name © 2018</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
 
 
@@ -423,8 +552,7 @@ function doLike(pid, uid)
     
     const d = {
         uid: uid,
-        pid: pid,
-        operation: 'like'
+        pid: pid
     }
 
     $.ajax({
@@ -434,9 +562,9 @@ function doLike(pid, uid)
             console.log(data);
             if (data.trim() == 'true')
             {
-                let c = $(".like-counter").html();
+                /* let c = $(".like-counter").html();
                 c++;
-                $('.like-counter').html(c);
+                $('.like-counter').html(c); */
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {

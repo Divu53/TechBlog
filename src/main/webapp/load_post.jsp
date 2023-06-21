@@ -17,10 +17,7 @@ if (user == null) {
 
 <div class="row">
 
-    <%
-        
-    
-        
+    <%  
         Thread.sleep(1000);
         PostDao d = new PostDao(ConnectionProvider.getConnection());
         
@@ -40,19 +37,22 @@ if (user == null) {
         for (Post p : posts) {
     %>
 
-    <div class="col-md-6 mt-2">
-        <div class="card">
-            <img class="card-img-top" src="blog_pics/<%= p.getpPic()%>" alt="Card image cap">
+    <div class="col-md-4 mt-5">
+        <div  class="card"  style="min-height: 500px;">
+            <div >
+             <img height="200px" class="card-img-top" src="blog_pics/<%= p.getpPic()%>" alt="Card image cap">
+            </div>
             <div class="card-body">
                 <b><%= p.getpTitle()%></b>
-                <p><%= p.getpContent()%></p>
+                <p><%= p.getpSubContent() %></p>
 
             </div>
-            <div class="card-footer primary-background text-center">
+            <div style="background-color:#0E2954;" class="card-footer primary-background text-center">
                 <% 
                     LikeDao ld = new LikeDao(ConnectionProvider.getConnection());
                 %>
-                <a href="#!" onclick="doLike(<%= p.getPid()%>,<%=user.getId()	 %>)" class="btn btn-outline-light btn-sm"> <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>
+                
+                <a href="#!" onclick="doLike(<%= p.getPid()%>,<%=user.getId()%>)" class="btn btn-outline-light btn-sm"> <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>
 
                 <a href="show_blog_page.jsp?post_id=<%= p.getPid()%>" class="btn btn-outline-light btn-sm">Read More...</a>
                 <a href="#!" class="btn btn-outline-light btn-sm"> <i class="fa fa-commenting-o"></i> <span>20</span>  </a>
@@ -81,20 +81,19 @@ function doLike(pid, uid)
     
     const d = {
         uid: uid,
-        pid: pid,
-        operation: 'like'
+        pid: pid
     }
 
     $.ajax({
         url: "LikeServlet",
         data: d,
         success: function (data, textStatus, jqXHR) {
-            console.log(data);
+
             if (data.trim() == 'true')
             {
-                let c = $(".like-counter").html();
+                /* let c = $(".like-counter").html();
                 c++;
-                $('.like-counter').html(c);
+                $('.like-counter').html(c); */
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
