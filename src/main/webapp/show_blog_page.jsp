@@ -9,21 +9,19 @@
 <%@page import="com.tech.blog.dao.PostDao"%>
 <%@page import="com.tech.blog.entities.Post"%>
 <%@page import="com.tech.blog.entities.User"%>
-<%@page  errorPage="error_page.jsp" %>
+
+<%@page errorPage="error.jsp"%>
 
 <%
-
-    User user = (User) session.getAttribute("currentUser");
-    if (user == null) {
-        response.sendRedirect("login_page.jsp");
-    }
-
-
+User user = (User) session.getAttribute("CurrentUser");
+if (user == null) {
+	response.sendRedirect("login_page.jsp");
+}
 %>
 
 <%    int postId = Integer.parseInt(request.getParameter("post_id"));
     PostDao d = new PostDao(ConnectionProvider.getConnection());
-
+    
     Post p = d.getPostByPostId(postId);
 %>
 
@@ -121,6 +119,7 @@
 
                 <ul class="navbar-nav mr-right">
                     <li class="nav-item">
+                    
                         <a class="nav-link" href="#!" data-toggle="modal" data-target="#profile-modal"> <span class="fa fa-user-circle "></span> <%= user.getName()%> </a>
                     </li>
 
@@ -150,7 +149,7 @@
                         <div class="card-header primary-background text-white">
 
                             <h4 class="post-title"><%= p.getpTitle()%></h4>
-
+ 
 
                         </div>
 
@@ -190,7 +189,7 @@
                             %>
 
                             <a href="#!" onclick="doLike(<%= p.getPid()%>,<%= user.getId()%>)" class="btn btn-outline-light btn-sm"> <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>
-                            <a href="#!" class="btn btn-outline-light btn-sm"> <i class="fa fa-commenting-o"></i> <span>20</span>  </a>
+                           <a href="#!" class="btn btn-outline-light btn-sm"> <i class="fa fa-commenting-o"></i> <span>20</span>  </a>
 
 
 
@@ -411,8 +410,44 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-        <script src="js/myjs.js" type="text/javascript"></script>
+		 <script src="js/myJs.js" type="text/javascript"></script>
 
+        
+        <!-- like post  -->
+
+<script>
+
+function doLike(pid, uid)
+{
+    console.log(pid + "," + uid)
+    
+    const d = {
+        uid: uid,
+        pid: pid,
+        operation: 'like'
+    }
+
+    $.ajax({
+        url: "LikeServlet",
+        data: d,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            if (data.trim() == 'true')
+            {
+                let c = $(".like-counter").html();
+                c++;
+                $('.like-counter').html(c);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown)
+        }
+    })
+}
+
+
+</script>
+	
         <script>
                                 $(document).ready(function () {
                                     let editStatus = false;

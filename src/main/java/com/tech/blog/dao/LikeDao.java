@@ -23,6 +23,7 @@ public class LikeDao {
             f = true;
 
         } catch (Exception e) {
+        	System.out.println();
             e.printStackTrace();
         }
 
@@ -33,7 +34,7 @@ public class LikeDao {
         int count = 0;
 
         System.out.println("called countLikeOnPost");
-        String q = "select count(*) from liked where pid=?";
+        String q = "select count(*) from liked where pid=? ;";
         try {
             PreparedStatement p = this.con.prepareStatement(q);
             p.setInt(1, pid);
